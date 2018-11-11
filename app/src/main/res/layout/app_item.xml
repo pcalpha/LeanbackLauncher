@@ -15,7 +15,7 @@
         android:layout_width="128dp"
         android:layout_height="72dp"
         android:layout_gravity="center"
-        android:elevation="1dp"
+        android:elevation="10dp"
         android:orientation="vertical"
         android:outlineProvider="bounds"
         >
