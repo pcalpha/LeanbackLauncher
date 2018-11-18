@@ -13,19 +13,14 @@ import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,7 +55,9 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppHolder> {
     static {
         blackList.add("信息");
         blackList.add("设置");
-        blackList.add("TVLauncher");
+        blackList.add("图库");
+        blackList.add("Android TV Remote Service");
+        blackList.add("LeanbackLauncher");
     }
 
     public AppAdapter(Context context) {
@@ -194,7 +191,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppHolder> {
     ViewOutlineProvider mAppIconImgOutline = new ViewOutlineProvider() {
         @Override
         public void getOutline(View view, Outline outline) {
-            outline.setRoundRect(new Rect(0, 0, view.getWidth(), view.getHeight()), 40);
+            outline.setRoundRect(new Rect(0, 0, view.getWidth(), view.getHeight()), 20);
         }
     };
 
@@ -362,14 +359,14 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppHolder> {
 //            });
 
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Toast.makeText(mContext, "long click", Toast.LENGTH_LONG).show();
-
-                    return true;
-                }
-            });
+//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//                @Override
+//                public boolean onLongClick(View v) {
+//                    Toast.makeText(mContext, "long click", Toast.LENGTH_LONG).show();
+//
+//                    return true;
+//                }
+//            });
 
 
 

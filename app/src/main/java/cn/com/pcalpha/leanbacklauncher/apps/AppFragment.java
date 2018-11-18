@@ -2,6 +2,7 @@ package cn.com.pcalpha.leanbacklauncher.apps;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,7 +21,7 @@ public class AppFragment extends Fragment {
 
     private RecyclerView mAppListView;
     private AppAdapter mAppAdapter;
-    private boolean mEditMode;//编辑模式
+    private boolean mEditMode = false;//编辑模式
     private static final int spanCount=5;
 
     @Override
@@ -61,15 +62,10 @@ public class AppFragment extends Fragment {
         mAppAdapter.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                int selectPosition = mAppListView.getChildAdapterPosition(mLayoutManager.getFocusedChild());
 
                 if (mEditMode) {
+                    int selectPosition = mAppListView.getChildAdapterPosition(mLayoutManager.getFocusedChild());
                     if (event.getAction() == KeyEvent.ACTION_DOWN) {
-
-                        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-
-                        }
-
                         if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
                             int toPosition = selectPosition + 1;
                             mAppAdapter.moveLaunchItems(selectPosition, toPosition);
@@ -95,7 +91,13 @@ public class AppFragment extends Fragment {
                             mEditMode = false;
                             return true;
                         }
-
+                    }
+                } else {
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        if (keyCode == KeyEvent.KEYCODE_MENU) {
+                            mContext.startActivity(new Intent("android.settings.SETTINGS"));
+                            return true;
+                        }
                     }
                 }
                 return false;
